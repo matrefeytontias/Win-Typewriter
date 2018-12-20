@@ -5,4 +5,10 @@ Win-Typewriter is a state-of-the-art clean and fresh typewriter experience right
 
 ## Usage
 
-You'll need MinGW-w64 with MSYS2 and gcc to compile this. Once you're set up, just type `make run` to enter the experience. Additionally, once the main software (`typewriter.exe`) is built, you can also run it with the number of keys you would like pressed between each tray opening as a parameter, like `typewriter.exe 250`. If you don't feel like doing it, you can also juust double-click the file like normal, and it will default to 100 keys. Piece of cake !
+You'll need MinGW-w64 with MSYS2 and gcc to compile this. Once you're set up, just type `make run` to enter the experience. Additionally, once the main software (`typewriter.exe`) is built, you can also run it with the number of keys you would like pressed between each tray opening as a parameter, like `typewriter.exe 250`. If you don't feel like doing it, you can also juust double-click the file like normal, and it will default to 100 keys.
+
+If you ever feel like opting out of this enlightening endeavour, you simply have to press the `ESCAPE` key. Piece of cake !
+
+## Implementation details
+
+Under the hood, this uses the WinAPI low-level keyboard hooks to inject a callback from a DLL into the global hook chain. This callback then catches all key presses and increments a counter, opening up the disk tray when a certain amount is reached and reacting to the `ESCAPE` key accordingly.
